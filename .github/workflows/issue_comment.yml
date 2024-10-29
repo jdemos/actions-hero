@@ -32,13 +32,13 @@ jobs:
     steps:
       - name: Create comment with API
         run: |
-          gh api -X POST \
-            https://api.github.com/repos/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUE_NUMBER}/comments \
-            -f body='
-              Comment from API call not an Action
-              '
+          gh api \
+            --method POST \
+            -H "Accept: application/vnd.github+json" \
+            /repos/${OWNER}/${REPO}/issues/${ISSUE_NUMBER}/comments \
+            -f "body=Comment made with the API instead of an Action"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ORGANIZATION: ${{ github.repository_owner }}
-          REPOSITORY: ${{ github.repository.name }}
+          OWNER: ${{ github.repository_owner }}
+          REPO: ${{ github.repository.name }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
