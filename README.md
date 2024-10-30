@@ -1,2 +1,2 @@
 # actions-hero
-Beginner actions tutorial
+Sandbox for creating and playing with Actions
